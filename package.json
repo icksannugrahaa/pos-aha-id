@@ -1,7 +1,7 @@
 {
   "private": true,
   "main": "main/index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "productName": "POS AHA.ID",
   "description": "Point Of Sales AHA.ID",
   "author": "aha.id",
