@@ -15,6 +15,7 @@
 
 # production
 /build
+/renderer/.next
 
 # misc
 .DS_Store
