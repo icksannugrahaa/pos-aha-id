@@ -1,7 +1,11 @@
 {
   "private": true,
   "main": "main/index.js",
-  "productName": "ElectronTypescriptNext",
+  "version": "0.0.1",
+  "productName": "POS AHA.ID",
+  "description": "Point Of Sales AHA.ID",
+  "author": "aha.id",
+  "name": "aha.id",
   "scripts": {
     "clean": "rimraf dist main renderer/out renderer/.next",
     "dev": "npm run build-electron && electron .",
@@ -10,13 +14,16 @@
     "build": "npm run build-renderer && npm run build-electron",
     "pack-app": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json"
+    "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json",
+    "publish": "electron-builder -p always"
   },
   "dependencies": {
     "electron-is-dev": "^1.2.0",
     "electron-next": "^3.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "electron-log": "^4.4.1",
+    "electron-updater": "^4.3.9"
   },
   "devDependencies": {
     "@types/node": "^14.18.63",
@@ -24,6 +31,7 @@
     "@types/react-dom": "^16.9.24",
     "electron": "^27.1.2",
     "electron-builder": "^24.9.1",
+    "electron-notarize": "^1.1.1",
     "next": "latest",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
@@ -31,10 +39,32 @@
     "typescript": "^4.9.5"
   },
   "build": {
+    "appId": "com.aha.id",
+    "afterSign": "./build/notarize.js",
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false
+    },
+    "linux": {
+      "category": "your.app.category.type",
+      "target": "AppImage"
+    },
     "asar": true,
     "files": [
       "main",
       "renderer/out"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "icksannugrahaa",
+        "repo": "pos-aha-id"
+      }
     ]
   }
 }

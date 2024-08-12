@@ -14,7 +14,8 @@
 /out/
 
 # production
-/build
+/dist
+/renderer/out
 /renderer/.next
 
 # misc
